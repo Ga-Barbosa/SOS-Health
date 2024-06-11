@@ -1,0 +1,21 @@
+//
+//  RequestEmergency.swift
+//  sos-health
+//
+//  Created by Gabriel Barbosa da Silva on 30/11/21.
+//
+
+import Foundation
+
+protocol RequestEmergency {
+    func execute(event: EmergencyAction) async -> Bool
+}
+
+struct RequestEmergencyUseCase: RequestEmergency {
+
+    var repo: RequestEmergencyRepository
+
+    func execute(event: EmergencyAction) async -> Bool {
+        return await repo.requestEvent(event: event)
+    }
+}
